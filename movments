@@ -1,0 +1,59 @@
+
+#include "TBS/Services/Introspection.h"
+#include "ROBOTAPI/Movement.h"
+
+
+
+namespace HAL { 
+	namespace API { 
+		namespace Movement { 
+		::TBS::Services::Introspection::Class __introspectionIMovement(){
+			::TBS::Services::Introspection::Namespace cnmspc;
+cnmspc.push_back("ROBOT");
+cnmspc.push_back("API");
+cnmspc.push_back("Movement");
+::TBS::Services::Introspection::Class c("ROBOT.API.Movement.Movement", "Movement", cnmspc,"");
+{
+	::TBS::Services::Introspection::Method m("Move", "");
+  m.inArguments.push_back(::TBS::Services::Introspection::Argument("speedLeft", "d", ""));
+  m.inArguments.push_back(::TBS::Services::Introspection::Argument("speedRight", "d", ""));
+	c.methods.push_back(m);
+}
+{
+	::TBS::Services::Introspection::Method m("Stop", "");
+	c.methods.push_back(m);
+}
+{
+	::TBS::Services::Introspection::Method m("SetPosition", "");
+  m.inArguments.push_back(::TBS::Services::Introspection::Argument("posLeft", "x", ""));
+  m.inArguments.push_back(::TBS::Services::Introspection::Argument("posRight", "x", ""));
+	c.methods.push_back(m);
+}
+{
+	::TBS::Services::Introspection::Method m("GetStatus", "");
+  m.outArguments.push_back(::TBS::Services::Introspection::Argument("speedLeft", "d", ""));
+  m.outArguments.push_back(::TBS::Services::Introspection::Argument("speedRight", "d", ""));
+  m.outArguments.push_back(::TBS::Services::Introspection::Argument("posLeft", "x", ""));
+  m.outArguments.push_back(::TBS::Services::Introspection::Argument("posRight", "x", ""));
+	c.methods.push_back(m);
+}
+{
+	::TBS::Services::Introspection::Signal s("StatusChanged", "");
+  s.arguments.push_back(::TBS::Services::Introspection::Argument("speedLeft", "d", ""));
+  s.arguments.push_back(::TBS::Services::Introspection::Argument("speedRight", "d", ""));
+  s.arguments.push_back(::TBS::Services::Introspection::Argument("posLeft", "x", ""));
+  s.arguments.push_back(::TBS::Services::Introspection::Argument("posRight", "x", ""));
+	c.signals.push_back(s);
+}
+return c;
+
+		}
+	   const ::TBS::Services::Introspection::Class & IMovement::introspection(){
+			static ::TBS::Services::Introspection::Class c(__introspectionIMovement());
+			return c;
+	   }
+ } 
+ } 
+ } 
+
+
